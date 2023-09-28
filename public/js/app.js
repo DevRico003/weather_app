@@ -9,6 +9,10 @@ const weatherCondition = document.querySelector(".weatherCondition");
 
 const tempElement = document.querySelector(".temperature span");
 
+const humidityElement = document.querySelector(".humidity span");
+
+const atmospherePressureElement = document.querySelector(".atmospherePressure span");
+
 const locationElement = document.querySelector(".place");
 
 const tempElementCelsius = document.getElementById("tempElementCelsius");
