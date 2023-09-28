@@ -1,4 +1,4 @@
-const request = require("request");
+import request from 'request'
 
 const openWeatherMap = {
   BASE_URL: "https://api.openweathermap.org/data/2.5/weather?q=",
@@ -20,4 +20,5 @@ const weatherData = (address, callback) => {
   });
 };
 
-module.exports = weatherData;
+export default weatherData
+
