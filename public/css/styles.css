@@ -104,6 +104,12 @@ h2 {
 .weatherCondition {
   color: white;
 }
+.humidity {
+  color: white;
+}
+.atmosphere pressure {
+  color: white;
+}  
 .date {
   text-align: center;
   font-size: 20px;
