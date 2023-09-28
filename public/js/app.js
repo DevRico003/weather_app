@@ -27,6 +27,16 @@ const monthName = currentDate.toLocaleString("en-US", options);
 const year = currentDate.getFullYear()
 dateElement.textContent = new Date().getDate() + "." + monthName + " " + year;
 
+function humidity(humidityElement) {
+  const humidityPercentage = (humidityElement * 100).toFixed(2) + "%";
+  humidityElement.textContent = humidityPercentage;
+}
+
+function atmospherePressure(atmospherePressureElement) {
+  const atmospherePressurePercentage = (atmospherePressureElement * 100).toFixed(2) + "%";
+  atmospherePressureElement.textContent = atmospherePressurePercentage;
+}
+
 weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
   //   console.log(search.value);
@@ -34,6 +44,8 @@ weatherForm.addEventListener("submit", (e) => {
   weatherIcon.className = "";
   tempElement.textContent = "";
   weatherCondition.textContent = "";
+  humidityElement.textContent = (humidityElement * 100).toFixed(2) + "%";
+  atmospherePressureElement.textContent = (atmospherePressureElement * 100).toFixed(2) + "%";
 
   showData(search.value);
 });
@@ -48,6 +60,8 @@ document.querySelector(".toggleTemp-button").addEventListener("click", function(
   }
   updateTemperatureDisplay();
 });
+
+// ...
 
 function showData(city) {
   getWeatherData(city, (result) => {
@@ -73,15 +87,17 @@ function showData(city) {
       document.querySelector(".tempElementCelsius span").textContent = tempCelsius + "°C";
       document.querySelector(".tempElementFahrenheit span").textContent = tempFahrenheit + "°F";
 
-      updateTemperatureDisplay();
+      // Rufe die neuen Funktionen auf, um die Luftfeuchtigkeit und den Atmosphärendruck anzuzeigen
+      humidity(result?.main?.humidity / 100); // Beachte, dass die Luftfeuchtigkeit normalerweise als Ganzzahl von 0 bis 100 angegeben wird, daher teilen wir sie durch 100, um sie in Dezimalform zu bringen.
+      atmospherePressure(result?.main?.pressure / 1013.25); // Hier teilen wir den Atmosphärendruck durch einen Standardwert von 1013,25 hPa, um ihn in Dezimalform zu bringen.
       
-      weatherCondition.textContent =
-        result?.weather[0]?.description?.toUpperCase();
+      weatherCondition.textContent = result?.weather[0]?.description?.toUpperCase();
     } else {
       locationElement.textContent = "Stadt wurde nicht gefunden.";
     }
   });
 }
+
 
 function updateTemperatureDisplay() {
   const tempElementCelsiusDiv = document.querySelector(".tempElementCelsius");
