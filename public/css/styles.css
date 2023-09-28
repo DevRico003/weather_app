@@ -1,5 +1,42 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css);
+
+/* Media Query für Geräte mit einer Mindestbreite von 475px */
+@media (min-width: 475px) {
+  .container {
+    max-width: 475px; /* Setzt die maximale Breite des Containers */
+  }
+}
+
+/* Media Query für Geräte mit einer Mindestbreite von 640px */
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+/* Media Query für Geräte mit einer Mindestbreite von 768px */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* Media Query für Geräte mit einer Mindestbreite von 1024px */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* Media Query für Geräte mit einer Mindestbreite von 1280px */
+@media (min-width: 1280px) {
+  .container {
+  max-width: 1280px;
+}
+}
+
+
 /* $border-radius: 20px; */
 body {
   color: #333333;
@@ -84,6 +121,18 @@ h2 {
   height: 40px;
   border-radius: 50px;
 }
+
+.toggleTemp-button {
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080705;
+  color:#fff;
+}
+
 .icon-and-weatherInfo {
   display: flex;
   justify-content: center;
@@ -95,6 +144,17 @@ h2 {
   font-size: 55px;
   color: white;
 }
+
+.tempElementCelsius {
+  font-size: 55px;
+  color: white;
+}
+
+.tempElementFahrenheit {
+  font-size: 55px;
+  color: white;
+}
+
 .place {
   text-align: center;
   font-size: 35px;
