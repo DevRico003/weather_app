@@ -322,6 +322,15 @@ nav a:hover {
   background-color: #630c0c; /* Ändert die Hintergrundfarbe der Liste der bevorzugten Orte beim Überfahren */
 }
 
+.humidity {
+  color: white; /* Schriftfarbe */
+}
+
+
+.atmospherePressure {
+  color: white; /* Schriftfarbe */
+}
+
 /* Media Queries für Tablets und Desktops */
 @media screen and (min-width: 768px) {
   body {

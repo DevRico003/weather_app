@@ -19,6 +19,12 @@ const windSpeed = document.querySelector(".windSpeed")
 // Referenz zum Element im HTML, das die aktuelle Temperatur anzeigt.
 const tempElement = document.querySelector(".temperature span")
 
+// Referenz zum Element im HTML, das den aktuellen Humidity anzeigt.
+const humidityElement = document.querySelector(".humidity")
+
+// Referenz zum Element im HTML, das den aktuellen Atmosphärendruck anzeigt.
+const atmospherePressureElement = document.querySelector(".atmospherePressure")
+
 // Referenz zum Ortselement im HTML. Dies zeigt den Namen des Ortes an, für den das Wetter abgerufen wurde.
 const locationElement = document.querySelector(".place")
 
@@ -65,6 +71,8 @@ weatherForm.addEventListener("submit", (e) => {
   // Setzt den Inhalt der verschiedenen Wetterinformationen zurück.
   tempElement.textContent = ""
   weatherCondition.textContent = ""
+  humidityElement.textContent = ""
+  atmospherePressureElement.textContent = ""
   windSpeed.textContent = ""
 
   // Ruft die Funktion showData auf und übergibt den Wert des Suchfelds.
@@ -142,7 +150,11 @@ function showData(city) {
       weatherCondition.textContent = result?.weather[0]?.description?.toUpperCase()
 
       // Zeigt die Windgeschwindigkeit an.
-      windSpeed.textContent = 'Wind ' + result?.wind["speed"]
+      windSpeed.textContent = 'Wind: ' + result?.wind["speed"]
+
+      humidityElement.textContent = 'Feuchtigkeit: ' + result?.main["humidity"]
+
+      atmospherePressureElement.textContent = 'Atmosphärendruck: ' + result?.main["pressure"]
       
     } 
     // Falls die Stadt nicht gefunden wurde oder ein anderer Fehler aufgetreten ist.
