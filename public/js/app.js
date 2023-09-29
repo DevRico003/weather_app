@@ -1,47 +1,47 @@
 // Die URL des Wetter-Endpoints, mit dem Anfragen an den Server gesendet werden.
-var weatherApi = "/weather";
+let weatherApi = "/weather"
 
 // Referenz zum Formular-Element im HTML. Dies wird verwendet, um das Absenden des Formulars zu überwachen.
-const weatherForm = document.querySelector("form");
+const weatherForm = document.querySelector("form")
 
 // Referenz zum Eingabe-Element im HTML. Dies wird verwendet, um den eingegebenen Suchbegriff (z.B. den Ortsnamen) abzurufen.
-const search = document.querySelector("input");
+const search = document.querySelector("input")
 
 // Referenz zum Icon-Element im HTML, das das aktuelle Wetter darstellt.
-const weatherIcon = document.querySelector(".weatherIcon i");
+const weatherIcon = document.querySelector(".weatherIcon i")
 
 // Referenz zum Element im HTML, das den aktuellen Wetterzustand (z.B. "Klarer Himmel") anzeigt.
-const weatherCondition = document.querySelector(".weatherCondition");
+const weatherCondition = document.querySelector(".weatherCondition")
 
 // Referenz zum Element im HTML, das die aktuelle Windgeschwindigkeit anzeigt.
-const windSpeed = document.querySelector(".windSpeed");
+const windSpeed = document.querySelector(".windSpeed")
 
 // Referenz zum Element im HTML, das die aktuelle Temperatur anzeigt.
-const tempElement = document.querySelector(".temperature span");
+const tempElement = document.querySelector(".temperature span")
 
 // Referenz zum Ortselement im HTML. Dies zeigt den Namen des Ortes an, für den das Wetter abgerufen wurde.
-const locationElement = document.querySelector(".place");
+const locationElement = document.querySelector(".place")
 
 // Variable, die den aktuellen Temperaturmodus (Celsius oder Fahrenheit) speichert.
-let currentTempMode = "C";
+let currentTempMode = "C"
 
 // Referenz zum Datums-Element im HTML, das das aktuelle Datum anzeigt.
-const dateElement = document.querySelector(".date");
+const dateElement = document.querySelector(".date")
 
 // Abrufen des aktuellen Datums.
-const currentDate = new Date();
+const currentDate = new Date()
 
 // Optionen, um nur den Monatsnamen aus dem Datum abzurufen.
-const options = { month: "long" };
+const options = { month: "long" }
 
 // Abrufen des Monatsnamens aus dem aktuellen Datum.
-const monthName = currentDate.toLocaleString("en-US", options);
+const monthName = currentDate.toLocaleString("en-US", options)
 
 // Abrufen des aktuellen Jahres aus dem Datum.
-const year = currentDate.getFullYear();
+const year = currentDate.getFullYear()
 
 // Setzen des Textinhalts des Datums-Elements auf das formatierte aktuelle Datum.
-dateElement.textContent = new Date().getDate() + "." + monthName + " " + year;
+dateElement.textContent = new Date().getDate() + "." + monthName + " " + year
 
 
 
@@ -53,24 +53,26 @@ weatherForm.addEventListener("submit", (e) => {
   // Verhindert das standardmäßige Verhalten des Browsers beim Absenden eines Formulars.
   // Normalerweise würde der Browser die Seite neu laden und die Formulardaten an den Server senden.
   // Durch Aufrufen von e.preventDefault() wird dies verhindert, so dass das Formular mit JavaScript verarbeitet werden kann.
-  e.preventDefault();
+  e.preventDefault()
   
   // Setzt den Inhalt des Ortselements zurück, um den Benutzer darüber zu informieren, dass die Stadt nicht gefunden wurde.
   // Dies ist nur ein Platzhalter, bis die tatsächlichen Wetterdaten abgerufen werden.
-  locationElement.textContent = "Stadt wurde nicht gefunden.";
+  locationElement.textContent = "Stadt wurde nicht gefunden."
   
   // Setzt das Klassenattribut des Wetter-Symbols zurück. Dies könnte verwendet werden, um das Symbol später basierend auf den Wetterdaten zu ändern.
-  weatherIcon.className = "";
+  weatherIcon.className = ""
   
   // Setzt den Inhalt der verschiedenen Wetterinformationen zurück.
-  tempElement.textContent = "";
-  weatherCondition.textContent = "";
-  windSpeed.textContent = "";
+  tempElement.textContent = ""
+  weatherCondition.textContent = ""
+  windSpeed.textContent = ""
 
   // Ruft die Funktion showData auf und übergibt den Wert des Suchfelds.
   // Diese Funktion sollte die Wetterdaten für die eingegebene Stadt abrufen und anzeigen.
-  showData(search.value);
+  showData(search.value)
 });
+
+
 
 
 // Fügt einen Event-Listener zum 'click' Ereignis des Elements mit der Klasse '.toggleTemp-button' hinzu.
@@ -80,19 +82,21 @@ document.querySelector(".toggleTemp-button").addEventListener("click", function(
   // Überprüft den aktuellen Temperaturmodus.
   // Wenn er auf "C" (Celsius) gesetzt ist, ändert er den Modus zu "F" (Fahrenheit) und aktualisiert den Button-Text.
   if (currentTempMode === "C") {
-    currentTempMode = "F";           // Setzt den Temperaturmodus auf Fahrenheit.
-    this.textContent = "Celsius";   // Ändert den Text des Buttons zu "Celsius".
+    currentTempMode = "F"           // Setzt den Temperaturmodus auf Fahrenheit.
+    this.textContent = "Celsius"   // Ändert den Text des Buttons zu "Celsius".
   } 
   // Wenn der aktuelle Modus "F" (Fahrenheit) ist, ändert er ihn zurück zu "C" (Celsius) und aktualisiert den Button-Text.
   else {
-    currentTempMode = "C";               // Setzt den Temperaturmodus auf Celsius zurück.
-    this.textContent = "Fahrenheit";    // Ändert den Text des Buttons zu "Fahrenheit".
+    currentTempMode = "C"               // Setzt den Temperaturmodus auf Celsius zurück.
+    this.textContent = "Fahrenheit"    // Ändert den Text des Buttons zu "Fahrenheit".
   }
   
   // Ruft die Funktion updateTemperatureDisplay auf.
   // Diese Funktion sollte die aktuelle Temperaturanzeige basierend auf dem ausgewählten Temperaturmodus (Celsius oder Fahrenheit) aktualisieren.
-  updateTemperatureDisplay();
-});
+  updateTemperatureDisplay()
+})
+
+
 
 
 /**
@@ -105,48 +109,51 @@ function showData(city) {
   // Ruft Wetterdaten für die angegebene Stadt mithilfe der getWeatherData Funktion ab.
   getWeatherData(city, (result) => {
     // Zeigt die abgerufenen Wetterdaten in der Konsole an.
-    console.log(result);
+    console.log(result)
 
     // Überprüft, ob der Abruf der Wetterdaten erfolgreich war.
     if (result.cod == 200) {
 
       // Aktualisiert die Liste der Lieblingsorte des Benutzers.
-      updateFavoritePlaces(); 
+      updateFavoritePlaces() 
 
       // Berechnet die Temperatur in Celsius und Fahrenheit.
-      const tempCelsius = (result?.main?.temp - 273.15).toFixed(0);
-      const tempFahrenheit = ((tempCelsius * 9/5) + 32).toFixed(0);
+      const tempCelsius = (result?.main?.temp - 273.15).toFixed(0)
+      const tempFahrenheit = ((tempCelsius * 9/5) + 32).toFixed(0)
 
       // Zeigt den Umschalt-Button für die Temperaturanzeige an.
-      document.querySelector(".toggleTemp-button").style.display = "block";
+      document.querySelector(".toggleTemp-button").style.display = "block"
 
       // Setzt das Wetter-Icon auf eine allgemeine bewölkte Darstellung.
       // (Dies könnte weiter angepasst werden, um verschiedene Icons basierend auf den tatsächlichen Wetterbedingungen anzuzeigen.)
-      weatherIcon.className = "wi wi-day-cloudy";
+      weatherIcon.className = "wi wi-day-cloudy"
 
       // Zeigt den Namen der Stadt an.
-      locationElement.textContent = result?.name;
+      locationElement.textContent = result?.name
 
       // Zeigt die Temperaturen in Celsius und Fahrenheit an.
-      document.querySelector(".tempElementCelsius span").textContent = tempCelsius + "°C";
-      document.querySelector(".tempElementFahrenheit span").textContent = tempFahrenheit + "°F";
+      document.querySelector(".tempElementCelsius span").textContent = tempCelsius + "°C"
+      document.querySelector(".tempElementFahrenheit span").textContent = tempFahrenheit + "°F"
 
       // Aktualisiert die Temperaturanzeige basierend auf dem aktuellen Modus (Celsius oder Fahrenheit).
-      updateTemperatureDisplay();
+      updateTemperatureDisplay()
       
       // Zeigt die Wetterbeschreibung (z.B. "klarer Himmel", "leichter Regen" usw.) an.
-      weatherCondition.textContent = result?.weather[0]?.description?.toUpperCase();
+      weatherCondition.textContent = result?.weather[0]?.description?.toUpperCase()
 
       // Zeigt die Windgeschwindigkeit an.
-      windSpeed.textContent = 'Wind ' + result?.wind["speed"];
+      windSpeed.textContent = 'Wind ' + result?.wind["speed"]
       
     } 
     // Falls die Stadt nicht gefunden wurde oder ein anderer Fehler aufgetreten ist.
     else {
-      locationElement.textContent = "Stadt wurde nicht gefunden.";
+      locationElement.textContent = "Stadt wurde nicht gefunden."
     }
-  });
+  })
 }
+
+
+
 
 
 /**
@@ -160,18 +167,20 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(content => {
           
           // Der Inhalt von 'menu.html' wird in das Element mit der ID 'menuPlaceholder' eingefügt.
-          document.getElementById('menuPlaceholder').innerHTML = content;
+          document.getElementById('menuPlaceholder').innerHTML = content
 
           // Überprüft, ob ein Cookie mit dem Namen 'username' vorhanden ist.
           if (document.cookie.split(';').some((item) => item.trim().startsWith('username='))) {
               
               // Wenn ein 'username' Cookie gefunden wird, wird das Logout-Element im Menü angezeigt.
-              document.getElementById('logout').style.display = 'block';
+              document.getElementById('logout').style.display = 'block'
           }
       })
       // Falls beim Abrufen des Menüs ein Fehler auftritt, wird dieser in der Konsole protokolliert.
-      .catch(error => console.error('Error loading the menu:', error));
-});
+      .catch(error => console.error('Error loading the menu:', error))
+})
+
+
 
 
 
@@ -186,9 +195,11 @@ document.addEventListener("DOMContentLoaded", function() {
       
       // Wenn ein 'username' Cookie gefunden wird (was bedeutet, dass der Benutzer eingeloggt ist),
       // wird das Logout-Element im Menü angezeigt.
-      document.getElementById('logout').style.display = 'block';
+      document.getElementById('logout').style.display = 'block'
   }
 });
+
+
 
 
 
@@ -202,18 +213,18 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => {
           
           // Die Antwort des Servers wird als JSON interpretiert.
-          return response.json();
+          return response.json()
       })
       .then(data => {
           
           // Ein Referenzpunkt zum <ul>-Element, in dem die Lieblingsorte angezeigt werden sollen.
-          const placesList = document.getElementById('placesList');
+          const placesList = document.getElementById('placesList')
           
           // Für jeden Lieblingsort im Datenarray wird ein neues <li>-Element erstellt.
           data.favoritePlaces.forEach(place => {
               
               // Erstellen eines neuen <li>-Elements.
-              const li = document.createElement('li');
+              const li = document.createElement('li')
               
               // Setzen des Textinhalts des <li>-Elements auf den Namen des Ortes.
               li.textContent = place;
@@ -222,20 +233,24 @@ document.addEventListener("DOMContentLoaded", function() {
               li.addEventListener('click', function() {
                   
                   // ...wird der Ort in das Suchfeld eingegeben.
-                  document.querySelector("input").value = place;
+                  document.querySelector("input").value = place
                   
                   // Und die Wetterdaten für diesen Ort werden abgerufen.
-                  showData(place);
+                  showData(place)
               });
               
               // Das <li>-Element wird dem <ul>-Element hinzugefügt.
-              placesList.appendChild(li);
+              placesList.appendChild(li)
           });
       })
       
       // Falls ein Fehler auftritt (z.B. der Server antwortet nicht), wird eine Fehlermeldung in der Konsole angezeigt.
-      .catch(error => console.error('Error fetching favorite places:', error));
+      .catch(error => console.error('Error fetching favorite places:', error))
 });
+
+
+
+
 
 /**
  * Diese Funktion ruft die Lieblingsorte des Benutzers ab und zeigt sie in einer Liste an.
@@ -247,16 +262,16 @@ function updateFavoritePlaces() {
       .then(response => {
           
           // Die Antwort des Servers wird als JSON interpretiert.
-          return response.json();
+          return response.json()
       })
       .then(data => {
           
           // Ein Referenzpunkt zum <ul>-Element, in dem die Lieblingsorte angezeigt werden sollen.
-          const placesList = document.getElementById('placesList');
+          const placesList = document.getElementById('placesList')
           
           // Entfernt alle vorhandenen Einträge im <ul>-Element, um alte Daten zu löschen.
           while (placesList.firstChild) {
-              placesList.removeChild(placesList.firstChild);
+              placesList.removeChild(placesList.firstChild)
           }
           
           // Überprüft, ob Daten vorhanden sind und ob die Daten das Attribut 'favoritePlaces' enthalten.
@@ -266,7 +281,7 @@ function updateFavoritePlaces() {
               data.favoritePlaces.forEach(place => {
                   
                   // Erstellen eines neuen <li>-Elements.
-                  const li = document.createElement('li');
+                  const li = document.createElement('li')
                   
                   // Setzen des Textinhalts des <li>-Elements auf den Namen des Ortes.
                   li.textContent = place;
@@ -275,21 +290,23 @@ function updateFavoritePlaces() {
                   li.addEventListener('click', function() {
                       
                       // ...wird der Ort in das Suchfeld eingegeben.
-                      document.querySelector("input").value = place;
+                      document.querySelector("input").value = place
                       
                       // Und die Wetterdaten für diesen Ort werden abgerufen.
-                      showData(place);
+                      showData(place)
                   });
                   
                   // Das <li>-Element wird dem <ul>-Element hinzugefügt.
-                  placesList.appendChild(li);
+                  placesList.appendChild(li)
               });
           }
       })
       
       // Falls ein Fehler auftritt (z.B. der Server antwortet nicht), wird eine Fehlermeldung in der Konsole angezeigt.
-      .catch(error => console.error('Error fetching favorite places:', error));
+      .catch(error => console.error('Error fetching favorite places:', error))
 }
+
+
 
 
 /**
@@ -300,9 +317,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
   // Sobald das Dokument vollständig geladen ist, wird die Funktion `updateFavoritePlaces` aufgerufen.
   // Diese Funktion ruft die Lieblingsorte des Benutzers ab und zeigt sie in der Benutzeroberfläche an.
-  updateFavoritePlaces();
+  updateFavoritePlaces()
 
-});
+})
+
+
 
 
 
@@ -312,20 +331,23 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function updateTemperatureDisplay() {
   // Holen Sie sich die HTML-Elemente für die Celsius- und Fahrenheit-Temperaturanzeigen.
-  const tempElementCelsiusDiv = document.querySelector(".tempElementCelsius");
-  const tempElementFahrenheitDiv = document.querySelector(".tempElementFahrenheit");
+  const tempElementCelsiusDiv = document.querySelector(".tempElementCelsius")
+  const tempElementFahrenheitDiv = document.querySelector(".tempElementFahrenheit")
 
   // Überprüfen Sie, welcher Temperaturmodus aktuell aktiv ist.
   if (currentTempMode === "C") {
     // Wenn der Modus "Celsius" ist, zeigen Sie den Celsius-Wert an und verbergen Sie den Fahrenheit-Wert.
-    tempElementCelsiusDiv.style.display = "block";
-    tempElementFahrenheitDiv.style.display = "none";
+    tempElementCelsiusDiv.style.display = "block"
+    tempElementFahrenheitDiv.style.display = "none"
   } else {
     // Wenn der Modus "Fahrenheit" ist, zeigen Sie den Fahrenheit-Wert an und verbergen Sie den Celsius-Wert.
-    tempElementCelsiusDiv.style.display = "none";
-    tempElementFahrenheitDiv.style.display = "block";
+    tempElementCelsiusDiv.style.display = "none"
+    tempElementFahrenheitDiv.style.display = "block"
   }
 }
+
+
+
 
 
 /**
@@ -336,16 +358,16 @@ function updateTemperatureDisplay() {
  */
 function getWeatherData(city, callback) {
   // Erstellen Sie die vollständige URL für die Wetter-API, indem Sie die Basis-URL `weatherApi` mit der Stadt kombinieren.
-  const locationApi = weatherApi + "?address=" + city;
+  const locationApi = weatherApi + "?address=" + city
 
   // Verwenden Sie die `fetch`-Funktion, um eine Anfrage an die Wetter-API zu senden.
   fetch(locationApi).then((response) => {
     // Die Antwort von der API wird als JSON interpretiert.
     response.json().then((response) => {
       // Rufen Sie den bereitgestellten Callback mit den Wetterdaten als Argument auf.
-      callback(response);
-    });
-  });
+      callback(response)
+    })
+  })
 }
 
 

@@ -10,15 +10,15 @@ const weatherData = (address, callback) => {
     openWeatherMap.BASE_URL +
     encodeURIComponent(address) +
     "&APPID=" +
-    openWeatherMap.SECRET_KEY;
-  console.log(url);
+    openWeatherMap.SECRET_KEY
+  console.log(url)
   request({ url, json: true }, (error, data) => {
     if (error) {
-      callback(true, "Unable to fetch data, Please try again. " + error);
+      callback(true, "Unable to fetch data, Please try again. " + error)
     }
-    callback(false, data?.body);
-  });
-};
+    callback(false, data?.body)
+  })
+}
 
 export default weatherData
 
