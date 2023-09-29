@@ -150,9 +150,11 @@ h2 {
 }
 .humidity {
   color: white;
+  font-size: small;
 }
 .atmospherePressure {
   color: white;
+  font-size: small;
 }  
 .date {
   text-align: center;

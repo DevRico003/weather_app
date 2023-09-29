@@ -115,12 +115,12 @@ function showData(city) {
     if (result.cod == 200) {
 
     // Feuchtigkeit in Prozent umwandeln und anzeigen
-    const humidityPercentage = humidity(result?.main?.humidity).toFixed(2) + "%";
-    humidityElement.textContent = `Luftfeuchtigkeit: ${humidityPercentage}`;
-      
+    const humidityPercentage = (result?.main?.humidity).toFixed(0) + "%";
+    humidityElement.textContent = `HUMIDITY: ${humidityPercentage}`;
+
     // Luftdruck in Prozent umwandeln und anzeigen
-    const atmospherePressurePercentage = atmospherePressure(result?.main?.pressure / 1013.25 * 100).toFixed(2) + "%";
-    atmospherePressureElement.textContent = `Luftdruck: ${atmospherePressurePercentage}`;
+    const atmospherePressurePercentage = (result?.main?.pressure / 1013.25 * 100).toFixed(0) + "%";
+    atmospherePressureElement.textContent = `ATMOSPHERE PRESSURE: ${atmospherePressurePercentage}`;
 
       // Aktualisiert die Liste der Lieblingsorte des Benutzers.
       updateFavoritePlaces(); 
