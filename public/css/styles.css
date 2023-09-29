@@ -145,7 +145,6 @@ h2 {
   margin-top: 70px; /* Abstand oben */
   color: white; /* Schriftfarbe */
 }
-<<<<<<< HEAD
 .weatherCondition {
   color: white;
 }
@@ -160,8 +159,7 @@ h2 {
   font-size: 20px;
   margin-top: 20px;
   color: white;
-=======
->>>>>>> 5a6d4a28965113c72331052e0a08b52150036af2
+}
 
 /* Styling für die Wetterbedingungen */
 .weatherCondition {
