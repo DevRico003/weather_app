@@ -19,8 +19,10 @@ const windSpeed = document.querySelector(".windSpeed");
 // Referenz zum Element im HTML, das die aktuelle Temperatur anzeigt.
 const tempElement = document.querySelector(".temperature span");
 
+//Referenz zum Element im HTML, das den aktuellen Humidity anzeigt.
 const humidityElement = document.querySelector(".humidity span");
 
+//Referenz zum Element im HTML, das den aktuellen Atmosphärendruck anzeigt.
 const atmospherePressureElement = document.querySelector(".atmospherePressure span");
 
 // Referenz zum Ortselement im HTML. Dies zeigt den Namen des Ortes an, für den das Wetter abgerufen wurde.
@@ -46,19 +48,6 @@ const year = currentDate.getFullYear();
 
 // Setzen des Textinhalts des Datums-Elements auf das formatierte aktuelle Datum.
 dateElement.textContent = new Date().getDate() + "." + monthName + " " + year;
-
-function humidity(humidityElement) {
-  const humidityPercentage = (humidityElement * 100).toFixed(2) + "%";
-  humidityElement.textContent = humidityPercentage;
-}
-
-function atmospherePressure(atmospherePressureElement) {
-  const atmospherePressurePercentage = (atmospherePressureElement * 100).toFixed(2) + "%";
-  atmospherePressureElement.textContent = atmospherePressurePercentage;
-}
-
-
-
 
 // Fügt einen Event-Listener zum 'submit' Ereignis des Formulars hinzu.
 // Dies wird ausgelöst, wenn der Benutzer das Formular abschickt (z.B. durch Drücken der Enter-Taste oder Klicken auf einen Absenden-Button).
@@ -124,6 +113,14 @@ function showData(city) {
 
     // Überprüft, ob der Abruf der Wetterdaten erfolgreich war.
     if (result.cod == 200) {
+
+    // Feuchtigkeit in Prozent umwandeln und anzeigen
+    const humidityPercentage = humidity(result?.main?.humidity).toFixed(2) + "%";
+    humidityElement.textContent = `Luftfeuchtigkeit: ${humidityPercentage}`;
+      
+    // Luftdruck in Prozent umwandeln und anzeigen
+    const atmospherePressurePercentage = atmospherePressure(result?.main?.pressure / 1013.25 * 100).toFixed(2) + "%";
+    atmospherePressureElement.textContent = `Luftdruck: ${atmospherePressurePercentage}`;
 
       // Aktualisiert die Liste der Lieblingsorte des Benutzers.
       updateFavoritePlaces(); 
