@@ -19,7 +19,7 @@ const windSpeed = document.querySelector(".windSpeed");
 // Referenz zum Element im HTML, das die aktuelle Temperatur anzeigt.
 const tempElement = document.querySelector(".temperature span");
 
-//Referenz zum Element im HTML, das den aktuellen Humidity anzeigt.
+//Referenz zum Element im HTML, das die aktuelle Luftfeuchtigkeit anzeigt.
 const humidityElement = document.querySelector(".humidity span");
 
 //Referenz zum Element im HTML, das den aktuellen Atmosphärendruck anzeigt.
@@ -118,7 +118,7 @@ function showData(city) {
     const humidityPercentage = (result?.main?.humidity).toFixed(0) + "%";
     humidityElement.textContent = `HUMIDITY: ${humidityPercentage}`;
 
-    // Luftdruck in Prozent umwandeln und anzeigen
+    // Luftdruck anzeigen
     const atmospherePressurePercentage = (result?.main?.pressure).toFixed(0);
     atmospherePressureElement.textContent = `ATMOSPHERE PRESSURE: ${atmospherePressurePercentage} hPa`;
 
