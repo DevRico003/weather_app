@@ -119,8 +119,8 @@ function showData(city) {
     humidityElement.textContent = `HUMIDITY: ${humidityPercentage}`;
 
     // Luftdruck in Prozent umwandeln und anzeigen
-    const atmospherePressurePercentage = (result?.main?.pressure / 1013.25 * 100).toFixed(0) + "%";
-    atmospherePressureElement.textContent = `ATMOSPHERE PRESSURE: ${atmospherePressurePercentage}`;
+    const atmospherePressurePercentage = (result?.main?.pressure / 1013.25 * 100).toFixed(2);
+    atmospherePressureElement.textContent = `ATMOSPHERE PRESSURE: ${atmospherePressurePercentage} hPa`;
 
       // Aktualisiert die Liste der Lieblingsorte des Benutzers.
       updateFavoritePlaces(); 
